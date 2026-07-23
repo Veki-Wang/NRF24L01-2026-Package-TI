@@ -1,0 +1,12 @@
+[
+   {
+      "directory" : "D:/study/competition/26elCompeetionprepare/ti/NRF24L01-Package/Debug",
+      "command"   : "clang++ -D__MSPM0G3519__ -D__USE_SYSCONFIG__ -I\"D:/study/competition/26elCompeetionprepare/ti/NRF24L01-Package\" -I\"D:/study/competition/26elCompeetionprepare/ti/NRF24L01-Package/Debug\" -I\"C:/TI/mspm0_sdk_2_11_00_07/source/third_party/CMSIS/Core/Include\" -I\"C:/TI/mspm0_sdk_2_11_00_07/source\" -isystem\"D:/Download/Microsoft Edge/CCS/ccs/tools/compiler/ti-cgt-armllvm_4.0.4.LTS/include/armv7em-ti-none-eabihf/c++/v1\" -isystem\"D:/Download/Microsoft Edge/CCS/ccs/tools/compiler/ti-cgt-armllvm_4.0.4.LTS/include/c++/v1\" -isystem\"D:/Download/Microsoft Edge/CCS/ccs/tools/compiler/ti-cgt-armllvm_4.0.4.LTS/lib/clang/18/include\" -isystem\"D:/Download/Microsoft Edge/CCS/ccs/tools/compiler/ti-cgt-armllvm_4.0.4.LTS/include/c\" -xc",
+      "file"      : "D:/study/competition/26elCompeetionprepare/ti/NRF24L01-Package/empty.c"
+   },
+   {
+      "directory" : "D:/study/competition/26elCompeetionprepare/ti/NRF24L01-Package/Debug",
+      "command"   : "clang++ -D__MSPM0G3519__ -D__USE_SYSCONFIG__ -I\"D:/study/competition/26elCompeetionprepare/ti/NRF24L01-Package\" -I\"D:/study/competition/26elCompeetionprepare/ti/NRF24L01-Package/Debug\" -I\"C:/TI/mspm0_sdk_2_11_00_07/source/third_party/CMSIS/Core/Include\" -I\"C:/TI/mspm0_sdk_2_11_00_07/source\" -isystem\"D:/Download/Microsoft Edge/CCS/ccs/tools/compiler/ti-cgt-armllvm_4.0.4.LTS/include/armv7em-ti-none-eabihf/c++/v1\" -isystem\"D:/Download/Microsoft Edge/CCS/ccs/tools/compiler/ti-cgt-armllvm_4.0.4.LTS/include/c++/v1\" -isystem\"D:/Download/Microsoft Edge/CCS/ccs/tools/compiler/ti-cgt-armllvm_4.0.4.LTS/lib/clang/18/include\" -isystem\"D:/Download/Microsoft Edge/CCS/ccs/tools/compiler/ti-cgt-armllvm_4.0.4.LTS/include/c\" -xc",
+      "file"      : "D:/study/competition/26elCompeetionprepare/ti/NRF24L01-Package/Debug/ti_msp_dl_config.c"
+   }
+]
