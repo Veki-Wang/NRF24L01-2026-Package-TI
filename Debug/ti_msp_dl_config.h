@@ -78,13 +78,52 @@ extern "C" {
 
 
 
+/* Defines for NRF24L01_SPI */
+#define NRF24L01_SPI_INST                                                  SPI0
+#define NRF24L01_SPI_INST_IRQHandler                            SPI0_IRQHandler
+#define NRF24L01_SPI_INST_INT_IRQN                                SPI0_INT_IRQn
+#define GPIO_NRF24L01_SPI_PICO_PORT                                       GPIOA
+#define GPIO_NRF24L01_SPI_PICO_PIN                               DL_GPIO_PIN_14
+#define GPIO_NRF24L01_SPI_IOMUX_PICO                            (IOMUX_PINCM36)
+#define GPIO_NRF24L01_SPI_IOMUX_PICO_FUNC            IOMUX_PINCM36_PF_SPI0_PICO
+#define GPIO_NRF24L01_SPI_POCI_PORT                                       GPIOA
+#define GPIO_NRF24L01_SPI_POCI_PIN                               DL_GPIO_PIN_10
+#define GPIO_NRF24L01_SPI_IOMUX_POCI                            (IOMUX_PINCM21)
+#define GPIO_NRF24L01_SPI_IOMUX_POCI_FUNC            IOMUX_PINCM21_PF_SPI0_POCI
+/* GPIO configuration for NRF24L01_SPI */
+#define GPIO_NRF24L01_SPI_SCLK_PORT                                       GPIOA
+#define GPIO_NRF24L01_SPI_SCLK_PIN                               DL_GPIO_PIN_11
+#define GPIO_NRF24L01_SPI_IOMUX_SCLK                            (IOMUX_PINCM22)
+#define GPIO_NRF24L01_SPI_IOMUX_SCLK_FUNC            IOMUX_PINCM22_PF_SPI0_SCLK
+#define GPIO_NRF24L01_SPI_CS0_PORT                                        GPIOA
+#define GPIO_NRF24L01_SPI_CS0_PIN                                DL_GPIO_PIN_18
+#define GPIO_NRF24L01_SPI_IOMUX_CS0                             (IOMUX_PINCM40)
+#define GPIO_NRF24L01_SPI_IOMUX_CS0_FUNC              IOMUX_PINCM40_PF_SPI0_CS0
+
+
+
+/* Port definition for Pin Group GPIO_SPI */
+#define GPIO_SPI_PORT                                                    (GPIOA)
+
+/* Defines for SPI_CE: GPIOA.0 with pinCMx 1 on package pin 1 */
+#define GPIO_SPI_SPI_CE_PIN                                      (DL_GPIO_PIN_0)
+#define GPIO_SPI_SPI_CE_IOMUX                                     (IOMUX_PINCM1)
+/* Defines for SPI_CSN: GPIOA.1 with pinCMx 2 on package pin 2 */
+#define GPIO_SPI_SPI_CSN_PIN                                     (DL_GPIO_PIN_1)
+#define GPIO_SPI_SPI_CSN_IOMUX                                    (IOMUX_PINCM2)
+
+
 /* clang-format on */
 
 void SYSCFG_DL_init(void);
 void SYSCFG_DL_initPower(void);
 void SYSCFG_DL_GPIO_init(void);
 void SYSCFG_DL_SYSCTL_init(void);
+void SYSCFG_DL_NRF24L01_SPI_init(void);
 
+
+bool SYSCFG_DL_saveConfiguration(void);
+bool SYSCFG_DL_restoreConfiguration(void);
 
 #ifdef __cplusplus
 }

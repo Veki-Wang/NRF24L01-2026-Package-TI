@@ -40,6 +40,8 @@
 
 #include "ti_msp_dl_config.h"
 
+DL_SPI_backupConfig gNRF24L01_SPIBackup;
+
 /*
  *  ======== SYSCFG_DL_init ========
  *  Perform any initialization needed before using any board APIs
@@ -50,6 +52,32 @@ SYSCONFIG_WEAK void SYSCFG_DL_init(void)
     SYSCFG_DL_GPIO_init();
     /* Module-Specific Initializations*/
     SYSCFG_DL_SYSCTL_init();
+    SYSCFG_DL_NRF24L01_SPI_init();
+    /* Ensure backup structures have no valid state */
+	gNRF24L01_SPIBackup.backupRdy 	= false;
+
+}
+/*
+ * User should take care to save and restore register configuration in application.
+ * See Retention Configuration section for more details.
+ */
+SYSCONFIG_WEAK bool SYSCFG_DL_saveConfiguration(void)
+{
+    bool retStatus = true;
+
+	retStatus &= DL_SPI_saveConfiguration(NRF24L01_SPI_INST, &gNRF24L01_SPIBackup);
+
+    return retStatus;
+}
+
+
+SYSCONFIG_WEAK bool SYSCFG_DL_restoreConfiguration(void)
+{
+    bool retStatus = true;
+
+	retStatus &= DL_SPI_restoreConfiguration(NRF24L01_SPI_INST, &gNRF24L01_SPIBackup);
+
+    return retStatus;
 }
 
 SYSCONFIG_WEAK void SYSCFG_DL_initPower(void)
@@ -57,15 +85,42 @@ SYSCONFIG_WEAK void SYSCFG_DL_initPower(void)
     DL_GPIO_reset(GPIOA);
     DL_GPIO_reset(GPIOB);
     DL_GPIO_reset(GPIOC);
+    DL_SPI_reset(NRF24L01_SPI_INST);
 
     DL_GPIO_enablePower(GPIOA);
     DL_GPIO_enablePower(GPIOB);
     DL_GPIO_enablePower(GPIOC);
+    DL_SPI_enablePower(NRF24L01_SPI_INST);
     delay_cycles(POWER_STARTUP_DELAY);
 }
 
 SYSCONFIG_WEAK void SYSCFG_DL_GPIO_init(void)
 {
+
+    DL_GPIO_initPeripheralOutputFunction(
+        GPIO_NRF24L01_SPI_IOMUX_CS0, GPIO_NRF24L01_SPI_IOMUX_CS0_FUNC);
+    
+	DL_GPIO_initPeripheralOutputFunctionFeatures(
+		 GPIO_NRF24L01_SPI_IOMUX_SCLK, GPIO_NRF24L01_SPI_IOMUX_SCLK_FUNC,
+		 DL_GPIO_INVERSION_DISABLE, DL_GPIO_RESISTOR_NONE,
+		 DL_GPIO_DRIVE_STRENGTH_HIGH, DL_GPIO_HIZ_DISABLE);
+	DL_GPIO_initPeripheralOutputFunctionFeatures(
+		 GPIO_NRF24L01_SPI_IOMUX_PICO, GPIO_NRF24L01_SPI_IOMUX_PICO_FUNC,
+		 DL_GPIO_INVERSION_DISABLE, DL_GPIO_RESISTOR_NONE,
+		 DL_GPIO_DRIVE_STRENGTH_HIGH, DL_GPIO_HIZ_DISABLE);
+	DL_GPIO_initPeripheralInputFunctionFeatures(
+		 GPIO_NRF24L01_SPI_IOMUX_POCI, GPIO_NRF24L01_SPI_IOMUX_POCI_FUNC,
+		 DL_GPIO_INVERSION_DISABLE, DL_GPIO_RESISTOR_PULL_UP,
+		 DL_GPIO_HYSTERESIS_DISABLE, DL_GPIO_WAKEUP_DISABLE);
+
+    DL_GPIO_initDigitalOutput(GPIO_SPI_SPI_CE_IOMUX);
+
+    DL_GPIO_initDigitalOutput(GPIO_SPI_SPI_CSN_IOMUX);
+
+    DL_GPIO_clearPins(GPIO_SPI_PORT, GPIO_SPI_SPI_CE_PIN);
+    DL_GPIO_setPins(GPIO_SPI_PORT, GPIO_SPI_SPI_CSN_PIN);
+    DL_GPIO_enableOutput(GPIO_SPI_PORT, GPIO_SPI_SPI_CE_PIN |
+		GPIO_SPI_SPI_CSN_PIN);
 
 }
 
@@ -85,4 +140,37 @@ SYSCONFIG_WEAK void SYSCFG_DL_SYSCTL_init(void)
 
 }
 
+
+static const DL_SPI_Config gNRF24L01_SPI_config = {
+    .mode        = DL_SPI_MODE_CONTROLLER,
+    .frameFormat = DL_SPI_FRAME_FORMAT_MOTO4_POL0_PHA0,
+    .parity      = DL_SPI_PARITY_NONE,
+    .dataSize    = DL_SPI_DATA_SIZE_8,
+    .bitOrder    = DL_SPI_BIT_ORDER_MSB_FIRST,
+    .chipSelectPin = DL_SPI_CHIP_SELECT_0,
+};
+
+static const DL_SPI_ClockConfig gNRF24L01_SPI_clockConfig = {
+    .clockSel    = DL_SPI_CLOCK_BUSCLK,
+    .divideRatio = DL_SPI_CLOCK_DIVIDE_RATIO_1
+};
+
+SYSCONFIG_WEAK void SYSCFG_DL_NRF24L01_SPI_init(void) {
+    DL_SPI_setClockConfig(NRF24L01_SPI_INST, (DL_SPI_ClockConfig *) &gNRF24L01_SPI_clockConfig);
+
+    DL_SPI_init(NRF24L01_SPI_INST, (DL_SPI_Config *) &gNRF24L01_SPI_config);
+
+    /* Configure Controller mode */
+    /*
+     * Set the bit rate clock divider to generate the serial output clock
+     *     outputBitRate = (spiInputClock) / ((1 + SCR) * 2)
+     *     5333333.33 = (32000000)/((1 + 2) * 2)
+     */
+    DL_SPI_setBitRateSerialClockDivider(NRF24L01_SPI_INST, 2);
+    /* Set RX and TX FIFO threshold levels */
+    DL_SPI_setFIFOThreshold(NRF24L01_SPI_INST, DL_SPI_RX_FIFO_LEVEL_1_2_FULL, DL_SPI_TX_FIFO_LEVEL_1_2_EMPTY);
+
+    /* Enable module */
+    DL_SPI_enable(NRF24L01_SPI_INST);
+}
 

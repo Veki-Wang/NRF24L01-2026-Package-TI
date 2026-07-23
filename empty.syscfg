@@ -1,21 +1,68 @@
 /**
  * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
  * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "MSPM0G351X" --part "Default" --package "LQFP-100(PZ)" --product "mspm0_sdk@2.11.00.07"
+ * @v2CliArgs --device "MSPM0G3519" --package "LQFP-100(PZ)" --product "mspm0_sdk@2.11.00.07"
+ * @versions {"tool":"1.26.2+4477"}
  */
-//@cliArgs --device "MSPM0G351X" --package "LQFP-100(PZ)" --part "Default"
-//@v2CliArgs --device "MSPM0G3519" --package "LQFP-100(PZ)"
-// @cliArgs --board /ti/boards/LP_MSPM0G3519 --rtos nortos
 
 /**
  * Import the modules used in this configuration.
  */
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const GPIO1  = GPIO.addInstance();
+const SPI    = scripting.addModule("/ti/driverlib/SPI", {}, false);
+const SPI1   = SPI.addInstance();
 const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
 
 /**
  * Write custom configuration values to the imported modules.
  */
+GPIO1.$name                          = "GPIO_SPI";
+GPIO1.associatedPins.create(2);
+GPIO1.associatedPins[0].$name        = "SPI_CE";
+GPIO1.associatedPins[1].$name        = "SPI_CSN";
+GPIO1.associatedPins[1].initialValue = "SET";
 
 const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
 
+SPI1.$name                              = "NRF24L01_SPI";
+SPI1.targetBitRate                      = 5312500;
+SPI1.sclkPinConfig.$name                = "ti_driverlib_gpio_GPIOPinGeneric0";
+SPI1.sclkPinConfig.direction            = scripting.forceWrite("OUTPUT");
+SPI1.sclkPinConfig.onlyInternalResistor = scripting.forceWrite(false);
+SPI1.sclkPinConfig.passedPeripheralType = scripting.forceWrite("Digital");
+SPI1.sclkPinConfig.enableConfig         = true;
+SPI1.sclkPinConfig.driveStrength        = "HIGH";
+SPI1.mosiPinConfig.$name                = "ti_driverlib_gpio_GPIOPinGeneric1";
+SPI1.mosiPinConfig.direction            = scripting.forceWrite("OUTPUT");
+SPI1.mosiPinConfig.hideOutputInversion  = scripting.forceWrite(false);
+SPI1.mosiPinConfig.onlyInternalResistor = scripting.forceWrite(false);
+SPI1.mosiPinConfig.passedPeripheralType = scripting.forceWrite("Digital");
+SPI1.mosiPinConfig.enableConfig         = true;
+SPI1.mosiPinConfig.driveStrength        = "HIGH";
+SPI1.misoPinConfig.$name                = "ti_driverlib_gpio_GPIOPinGeneric2";
+SPI1.misoPinConfig.onlyInternalResistor = scripting.forceWrite(false);
+SPI1.misoPinConfig.passedPeripheralType = scripting.forceWrite("Digital");
+SPI1.misoPinConfig.enableConfig         = true;
+SPI1.misoPinConfig.internalResistor     = "PULL_UP";
+SPI1.cs0PinConfig.$name                 = "ti_driverlib_gpio_GPIOPinGeneric3";
+
 SYSCTL.forceDefaultClkConfig = true;
 SYSCTL.clockTreeEn           = true;
+
+/**
+ * Pinmux solution for unlocked pins/peripherals. This ensures that minor changes to the automatic solver in a future
+ * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
+ * re-solve from scratch.
+ */
+GPIO1.associatedPins[0].pin.$suggestSolution = "PA0";
+GPIO1.associatedPins[1].pin.$suggestSolution = "PA1";
+Board.peripheral.$suggestSolution            = "DEBUGSS";
+Board.peripheral.swclkPin.$suggestSolution   = "PA20";
+Board.peripheral.swdioPin.$suggestSolution   = "PA19";
+SPI1.peripheral.$suggestSolution             = "SPI0";
+SPI1.peripheral.sclkPin.$suggestSolution     = "PA11";
+SPI1.peripheral.mosiPin.$suggestSolution     = "PA14";
+SPI1.peripheral.misoPin.$suggestSolution     = "PA10";
+SPI1.peripheral.cs0Pin.$suggestSolution      = "PA18";

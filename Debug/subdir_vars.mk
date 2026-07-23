@@ -9,9 +9,10 @@ SYSCFG_SRCS += \
 ../empty.syscfg 
 
 C_SRCS += \
-../empty.c \
+../NRF24L01.c \
 ./ti_msp_dl_config.c \
-C:/TI/mspm0_sdk_2_11_00_07/source/ti/devices/msp/m0p/startup_system_files/ticlang/startup_mspm0g351x_ticlang.c 
+C:/TI/mspm0_sdk_2_11_00_07/source/ti/devices/msp/m0p/startup_system_files/ticlang/startup_mspm0g351x_ticlang.c \
+../main.c 
 
 GEN_CMDS += \
 ./device_linker.cmd 
@@ -22,35 +23,41 @@ GEN_FILES += \
 ./ti_msp_dl_config.c 
 
 C_DEPS += \
-./empty.d \
+./NRF24L01.d \
 ./ti_msp_dl_config.d \
-./startup_mspm0g351x_ticlang.d 
+./startup_mspm0g351x_ticlang.d \
+./main.d 
 
 GEN_OPTS += \
 ./device.opt 
 
 OBJS += \
-./empty.o \
+./NRF24L01.o \
 ./ti_msp_dl_config.o \
-./startup_mspm0g351x_ticlang.o 
+./startup_mspm0g351x_ticlang.o \
+./main.o 
 
 GEN_MISC_FILES += \
 ./device.cmd.genlibs \
-./ti_msp_dl_config.h 
+./ti_msp_dl_config.h \
+./Event.dot 
 
 OBJS__QUOTED += \
-"empty.o" \
+"NRF24L01.o" \
 "ti_msp_dl_config.o" \
-"startup_mspm0g351x_ticlang.o" 
+"startup_mspm0g351x_ticlang.o" \
+"main.o" 
 
 GEN_MISC_FILES__QUOTED += \
 "device.cmd.genlibs" \
-"ti_msp_dl_config.h" 
+"ti_msp_dl_config.h" \
+"Event.dot" 
 
 C_DEPS__QUOTED += \
-"empty.d" \
+"NRF24L01.d" \
 "ti_msp_dl_config.d" \
-"startup_mspm0g351x_ticlang.d" 
+"startup_mspm0g351x_ticlang.d" \
+"main.d" 
 
 GEN_FILES__QUOTED += \
 "device_linker.cmd" \
@@ -58,9 +65,10 @@ GEN_FILES__QUOTED += \
 "ti_msp_dl_config.c" 
 
 C_SRCS__QUOTED += \
-"../empty.c" \
+"../NRF24L01.c" \
 "./ti_msp_dl_config.c" \
-"C:/TI/mspm0_sdk_2_11_00_07/source/ti/devices/msp/m0p/startup_system_files/ticlang/startup_mspm0g351x_ticlang.c" 
+"C:/TI/mspm0_sdk_2_11_00_07/source/ti/devices/msp/m0p/startup_system_files/ticlang/startup_mspm0g351x_ticlang.c" \
+"../main.c" 
 
 SYSCFG_SRCS__QUOTED += \
 "../empty.syscfg" 
