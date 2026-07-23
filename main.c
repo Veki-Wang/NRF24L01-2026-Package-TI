@@ -31,10 +31,17 @@
  */
 
 #include "ti_msp_dl_config.h"
+#include "OLED.h"
 
 int main(void)
 {
-    SYSCFG_DL_init();
+    SYSCFG_DL_init();       // 系统初始化（GPIO、SPI等）
+    OLED_Init();            // OLED初始化
+
+    /* OLED测试显示 */
+    OLED_ShowString(0, 0, "NRF24L01 Test", OLED_8X16);
+    OLED_ShowString(0, 16, "OLED OK!", OLED_8X16);
+    OLED_Update();
 
     while (1) {
     }

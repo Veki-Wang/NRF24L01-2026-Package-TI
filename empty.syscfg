@@ -11,6 +11,7 @@
  */
 const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
 const GPIO1  = GPIO.addInstance();
+const GPIO2  = GPIO.addInstance();
 const SPI    = scripting.addModule("/ti/driverlib/SPI", {}, false);
 const SPI1   = SPI.addInstance();
 const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
@@ -25,6 +26,13 @@ GPIO1.associatedPins[1].$name        = "SPI_CSN";
 GPIO1.associatedPins[1].initialValue = "SET";
 
 const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+
+GPIO2.$name                         = "OLED";
+GPIO2.associatedPins.create(2);
+GPIO2.associatedPins[0].$name       = "OLED_SDA";
+GPIO2.associatedPins[0].pin.$assign = "PB9";
+GPIO2.associatedPins[1].$name       = "OLED_SCL";
+GPIO2.associatedPins[1].pin.$assign = "PB8";
 
 SPI1.$name                              = "NRF24L01_SPI";
 SPI1.targetBitRate                      = 5312500;

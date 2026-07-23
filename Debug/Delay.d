@@ -1,6 +1,6 @@
 # FIXED
 
-main.o: ../main.c \
+Delay.o: ../Delay.c ../Delay.h \
  ti_msp_dl_config.h \
  C:/TI/mspm0_sdk_2_11_00_07/source/ti/devices/msp/msp.h \
  C:/TI/mspm0_sdk_2_11_00_07/source/ti/devices/DeviceFamily.h \
@@ -84,8 +84,8 @@ main.o: ../main.c \
  C:/TI/mspm0_sdk_2_11_00_07/source/ti/driverlib/dl_vref.h \
  C:/TI/mspm0_sdk_2_11_00_07/source/ti/driverlib/dl_wwdt.h \
  C:/TI/mspm0_sdk_2_11_00_07/source/ti/driverlib/m0p/dl_interrupt.h \
- C:/TI/mspm0_sdk_2_11_00_07/source/ti/driverlib/m0p/dl_systick.h \
- ../OLED.h ../OLED_Data.h
+ C:/TI/mspm0_sdk_2_11_00_07/source/ti/driverlib/m0p/dl_systick.h
+../Delay.h:
 ti_msp_dl_config.h:
 C:/TI/mspm0_sdk_2_11_00_07/source/ti/devices/msp/msp.h:
 C:/TI/mspm0_sdk_2_11_00_07/source/ti/devices/DeviceFamily.h:
@@ -170,5 +170,3 @@ C:/TI/mspm0_sdk_2_11_00_07/source/ti/driverlib/dl_vref.h:
 C:/TI/mspm0_sdk_2_11_00_07/source/ti/driverlib/dl_wwdt.h:
 C:/TI/mspm0_sdk_2_11_00_07/source/ti/driverlib/m0p/dl_interrupt.h:
 C:/TI/mspm0_sdk_2_11_00_07/source/ti/driverlib/m0p/dl_systick.h:
-../OLED.h:
-../OLED_Data.h:

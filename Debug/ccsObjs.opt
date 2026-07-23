@@ -1,4 +1,7 @@
+"./Delay.o"
 "./NRF24L01.o"
+"./OLED.o"
+"./OLED_Data.o"
 "./ti_msp_dl_config.o"
 "./startup_mspm0g351x_ticlang.o"
 "./main.o"
