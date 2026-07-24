@@ -1,6 +1,6 @@
 # FIXED
 
-empty.o: ../empty.c \
+Delay.o: ../Delay.c ../Delay.h \
  ti_msp_dl_config.h \
  C:/TI/mspm0_sdk_2_11_00_07/source/ti/devices/msp/msp.h \
  C:/TI/mspm0_sdk_2_11_00_07/source/ti/devices/DeviceFamily.h \
@@ -85,6 +85,7 @@ empty.o: ../empty.c \
  C:/TI/mspm0_sdk_2_11_00_07/source/ti/driverlib/dl_wwdt.h \
  C:/TI/mspm0_sdk_2_11_00_07/source/ti/driverlib/m0p/dl_interrupt.h \
  C:/TI/mspm0_sdk_2_11_00_07/source/ti/driverlib/m0p/dl_systick.h
+../Delay.h:
 ti_msp_dl_config.h:
 C:/TI/mspm0_sdk_2_11_00_07/source/ti/devices/msp/msp.h:
 C:/TI/mspm0_sdk_2_11_00_07/source/ti/devices/DeviceFamily.h:

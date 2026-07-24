@@ -31,11 +31,18 @@
  */
 
 #include "ti_msp_dl_config.h"
+#include "OLED.h"
+#include "Delay.h"
 
 int main(void)
 {
     SYSCFG_DL_init();
+    OLED_Init();
 
     while (1) {
+        OLED_Clear();
+        OLED_ShowString(0, 0, "Hello World!", OLED_8X16);
+        OLED_Update();
+        Delay_ms(1000);
     }
 }

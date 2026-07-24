@@ -99,6 +99,15 @@ bool SYSCFG_DL_SYSCTL_SYSPLL_init(void);
 /* Defines for CSN: GPIOA.1 with pinCMx 2 on package pin 2 */
 #define NRF_CSN_PIN                                              (DL_GPIO_PIN_1)
 #define NRF_CSN_IOMUX                                             (IOMUX_PINCM2)
+/* Port definition for Pin Group OLED */
+#define OLED_PORT                                                        (GPIOB)
+
+/* Defines for SCL: GPIOB.8 with pinCMx 25 on package pin 42 */
+#define OLED_SCL_PIN                                             (DL_GPIO_PIN_8)
+#define OLED_SCL_IOMUX                                           (IOMUX_PINCM25)
+/* Defines for SDA: GPIOB.9 with pinCMx 26 on package pin 43 */
+#define OLED_SDA_PIN                                             (DL_GPIO_PIN_9)
+#define OLED_SDA_IOMUX                                           (IOMUX_PINCM26)
 
 
 /* clang-format on */

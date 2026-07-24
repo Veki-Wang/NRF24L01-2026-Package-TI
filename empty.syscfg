@@ -11,6 +11,7 @@
  */
 const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
 const GPIO1  = GPIO.addInstance();
+const GPIO2  = GPIO.addInstance();
 const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
 
 /**
@@ -41,6 +42,13 @@ GPIO1.associatedPins[0].$name = "CE";
 GPIO1.associatedPins[1].$name = "CSN";
 
 const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+
+GPIO2.$name                         = "OLED";
+GPIO2.associatedPins.create(2);
+GPIO2.associatedPins[0].$name       = "SCL";
+GPIO2.associatedPins[0].pin.$assign = "PB8";
+GPIO2.associatedPins[1].$name       = "SDA";
+GPIO2.associatedPins[1].pin.$assign = "PB9";
 
 SYSCTL.forceDefaultClkConfig = true;
 SYSCTL.clockTreeEn           = true;
