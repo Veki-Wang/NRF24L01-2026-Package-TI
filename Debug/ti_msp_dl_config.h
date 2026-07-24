@@ -90,15 +90,6 @@ bool SYSCFG_DL_SYSCTL_SYSPLL_init(void);
 
 
 
-/* Port definition for Pin Group NRF */
-#define NRF_PORT                                                         (GPIOA)
-
-/* Defines for CE: GPIOA.0 with pinCMx 1 on package pin 1 */
-#define NRF_CE_PIN                                               (DL_GPIO_PIN_0)
-#define NRF_CE_IOMUX                                              (IOMUX_PINCM1)
-/* Defines for CSN: GPIOA.1 with pinCMx 2 on package pin 2 */
-#define NRF_CSN_PIN                                              (DL_GPIO_PIN_1)
-#define NRF_CSN_IOMUX                                             (IOMUX_PINCM2)
 /* Port definition for Pin Group OLED */
 #define OLED_PORT                                                        (GPIOB)
 
@@ -108,6 +99,26 @@ bool SYSCFG_DL_SYSCTL_SYSPLL_init(void);
 /* Defines for SDA: GPIOB.9 with pinCMx 26 on package pin 43 */
 #define OLED_SDA_PIN                                             (DL_GPIO_PIN_9)
 #define OLED_SDA_IOMUX                                           (IOMUX_PINCM26)
+/* Defines for CE: GPIOA.31 with pinCMx 6 on package pin 7 */
+#define NRF_CE_PORT                                                      (GPIOA)
+#define NRF_CE_PIN                                              (DL_GPIO_PIN_31)
+#define NRF_CE_IOMUX                                              (IOMUX_PINCM6)
+/* Defines for CSN: GPIOC.12 with pinCMx 61 on package pin 10 */
+#define NRF_CSN_PORT                                                     (GPIOC)
+#define NRF_CSN_PIN                                             (DL_GPIO_PIN_12)
+#define NRF_CSN_IOMUX                                            (IOMUX_PINCM61)
+/* Defines for SCK: GPIOC.13 with pinCMx 62 on package pin 12 */
+#define NRF_SCK_PORT                                                     (GPIOC)
+#define NRF_SCK_PIN                                             (DL_GPIO_PIN_13)
+#define NRF_SCK_IOMUX                                            (IOMUX_PINCM62)
+/* Defines for MOSI: GPIOC.15 with pinCMx 64 on package pin 11 */
+#define NRF_MOSI_PORT                                                    (GPIOC)
+#define NRF_MOSI_PIN                                            (DL_GPIO_PIN_15)
+#define NRF_MOSI_IOMUX                                           (IOMUX_PINCM64)
+/* Defines for MISO: GPIOC.14 with pinCMx 63 on package pin 13 */
+#define NRF_MISO_PORT                                                    (GPIOC)
+#define NRF_MISO_PIN                                            (DL_GPIO_PIN_14)
+#define NRF_MISO_IOMUX                                           (IOMUX_PINCM63)
 
 
 /* clang-format on */

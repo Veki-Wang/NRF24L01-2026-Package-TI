@@ -70,22 +70,34 @@ SYSCONFIG_WEAK void SYSCFG_DL_GPIO_init(void)
     DL_GPIO_initPeripheralAnalogFunction(GPIO_HFXIN_IOMUX);
     DL_GPIO_initPeripheralAnalogFunction(GPIO_HFXOUT_IOMUX);
 
-    DL_GPIO_initDigitalOutput(NRF_CE_IOMUX);
-
-    DL_GPIO_initDigitalOutput(NRF_CSN_IOMUX);
-
     DL_GPIO_initDigitalOutput(OLED_SCL_IOMUX);
 
     DL_GPIO_initDigitalOutput(OLED_SDA_IOMUX);
 
-    DL_GPIO_clearPins(NRF_PORT, NRF_CE_PIN |
-		NRF_CSN_PIN);
-    DL_GPIO_enableOutput(NRF_PORT, NRF_CE_PIN |
-		NRF_CSN_PIN);
+    DL_GPIO_initDigitalOutput(NRF_CE_IOMUX);
+
+    DL_GPIO_initDigitalOutput(NRF_CSN_IOMUX);
+
+    DL_GPIO_initDigitalOutput(NRF_SCK_IOMUX);
+
+    DL_GPIO_initDigitalOutput(NRF_MOSI_IOMUX);
+
+    DL_GPIO_initDigitalInputFeatures(NRF_MISO_IOMUX,
+		 DL_GPIO_INVERSION_DISABLE, DL_GPIO_RESISTOR_NONE,
+		 DL_GPIO_HYSTERESIS_DISABLE, DL_GPIO_WAKEUP_DISABLE);
+
+    DL_GPIO_clearPins(GPIOA, NRF_CE_PIN);
+    DL_GPIO_enableOutput(GPIOA, NRF_CE_PIN);
     DL_GPIO_clearPins(OLED_PORT, OLED_SCL_PIN |
 		OLED_SDA_PIN);
     DL_GPIO_enableOutput(OLED_PORT, OLED_SCL_PIN |
 		OLED_SDA_PIN);
+    DL_GPIO_clearPins(GPIOC, NRF_CSN_PIN |
+		NRF_SCK_PIN |
+		NRF_MOSI_PIN);
+    DL_GPIO_enableOutput(GPIOC, NRF_CSN_PIN |
+		NRF_SCK_PIN |
+		NRF_MOSI_PIN);
 
 }
 

@@ -14,7 +14,8 @@ C_SRCS += \
 ../OLED_Data.c \
 ./ti_msp_dl_config.c \
 C:/TI/mspm0_sdk_2_11_00_07/source/ti/devices/msp/m0p/startup_system_files/ticlang/startup_mspm0g351x_ticlang.c \
-../main.c 
+../main.c \
+../nrf2401.c 
 
 GEN_CMDS += \
 ./device_linker.cmd 
@@ -30,7 +31,8 @@ C_DEPS += \
 ./OLED_Data.d \
 ./ti_msp_dl_config.d \
 ./startup_mspm0g351x_ticlang.d \
-./main.d 
+./main.d \
+./nrf2401.d 
 
 GEN_OPTS += \
 ./device.opt 
@@ -41,7 +43,8 @@ OBJS += \
 ./OLED_Data.o \
 ./ti_msp_dl_config.o \
 ./startup_mspm0g351x_ticlang.o \
-./main.o 
+./main.o \
+./nrf2401.o 
 
 GEN_MISC_FILES += \
 ./device.cmd.genlibs \
@@ -54,7 +57,8 @@ OBJS__QUOTED += \
 "OLED_Data.o" \
 "ti_msp_dl_config.o" \
 "startup_mspm0g351x_ticlang.o" \
-"main.o" 
+"main.o" \
+"nrf2401.o" 
 
 GEN_MISC_FILES__QUOTED += \
 "device.cmd.genlibs" \
@@ -67,7 +71,8 @@ C_DEPS__QUOTED += \
 "OLED_Data.d" \
 "ti_msp_dl_config.d" \
 "startup_mspm0g351x_ticlang.d" \
-"main.d" 
+"main.d" \
+"nrf2401.d" 
 
 GEN_FILES__QUOTED += \
 "device_linker.cmd" \
@@ -80,7 +85,8 @@ C_SRCS__QUOTED += \
 "../OLED_Data.c" \
 "./ti_msp_dl_config.c" \
 "C:/TI/mspm0_sdk_2_11_00_07/source/ti/devices/msp/m0p/startup_system_files/ticlang/startup_mspm0g351x_ticlang.c" \
-"../main.c" 
+"../main.c" \
+"../nrf2401.c" 
 
 SYSCFG_SRCS__QUOTED += \
 "../empty.syscfg" 

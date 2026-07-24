@@ -16,6 +16,7 @@ ORDERED_OBJS += \
 "./ti_msp_dl_config.o" \
 "./startup_mspm0g351x_ticlang.o" \
 "./main.o" \
+"./nrf2401.o" \
 $(GEN_CMDS__FLAG) \
 -Wl,-ldevice.cmd.genlibs \
 -Wl,-llibc.a \
@@ -139,8 +140,8 @@ TI-NRF24L01-Package.out: $(OBJS) $(GEN_CMDS)
 # Other Targets
 clean:
 	-$(RM) $(GEN_MISC_FILES__QUOTED)$(GEN_FILES__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "Delay.o" "OLED.o" "OLED_Data.o" "ti_msp_dl_config.o" "startup_mspm0g351x_ticlang.o" "main.o" 
-	-$(RM) "Delay.d" "OLED.d" "OLED_Data.d" "ti_msp_dl_config.d" "startup_mspm0g351x_ticlang.d" "main.d" 
+	-$(RM) "Delay.o" "OLED.o" "OLED_Data.o" "ti_msp_dl_config.o" "startup_mspm0g351x_ticlang.o" "main.o" "nrf2401.o" 
+	-$(RM) "Delay.d" "OLED.d" "OLED_Data.d" "ti_msp_dl_config.d" "startup_mspm0g351x_ticlang.d" "main.d" "nrf2401.d" 
 	-@echo ' '
 
 .PHONY: all clean dependents

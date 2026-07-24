@@ -36,19 +36,28 @@ const pinFunction4     = system.clockTree["HFXT"];
 pinFunction4.inputFreq = 40;
 pinFunction4.enable    = true;
 
-GPIO1.$name                   = "NRF";
+GPIO1.$name                         = "OLED";
 GPIO1.associatedPins.create(2);
-GPIO1.associatedPins[0].$name = "CE";
-GPIO1.associatedPins[1].$name = "CSN";
+GPIO1.associatedPins[0].$name       = "SCL";
+GPIO1.associatedPins[0].pin.$assign = "PB8";
+GPIO1.associatedPins[1].$name       = "SDA";
+GPIO1.associatedPins[1].pin.$assign = "PB9";
 
 const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
 
-GPIO2.$name                         = "OLED";
-GPIO2.associatedPins.create(2);
-GPIO2.associatedPins[0].$name       = "SCL";
-GPIO2.associatedPins[0].pin.$assign = "PB8";
-GPIO2.associatedPins[1].$name       = "SDA";
-GPIO2.associatedPins[1].pin.$assign = "PB9";
+GPIO2.$name                         = "NRF";
+GPIO2.associatedPins.create(5);
+GPIO2.associatedPins[0].$name       = "CE";
+GPIO2.associatedPins[0].pin.$assign = "PA31";
+GPIO2.associatedPins[1].$name       = "CSN";
+GPIO2.associatedPins[1].pin.$assign = "PC12";
+GPIO2.associatedPins[2].$name       = "SCK";
+GPIO2.associatedPins[2].pin.$assign = "PC13";
+GPIO2.associatedPins[3].$name       = "MOSI";
+GPIO2.associatedPins[3].pin.$assign = "PC15";
+GPIO2.associatedPins[4].$name       = "MISO";
+GPIO2.associatedPins[4].direction   = "INPUT";
+GPIO2.associatedPins[4].pin.$assign = "PC14";
 
 SYSCTL.forceDefaultClkConfig = true;
 SYSCTL.clockTreeEn           = true;
@@ -61,8 +70,6 @@ SYSCTL.clockTreeEn           = true;
 pinFunction4.peripheral.$suggestSolution           = "SYSCTL";
 pinFunction4.peripheral.hfxInPin.$suggestSolution  = "PA5";
 pinFunction4.peripheral.hfxOutPin.$suggestSolution = "PA6";
-GPIO1.associatedPins[0].pin.$suggestSolution       = "PA0";
-GPIO1.associatedPins[1].pin.$suggestSolution       = "PA1";
 Board.peripheral.$suggestSolution                  = "DEBUGSS";
 Board.peripheral.swclkPin.$suggestSolution         = "PA20";
 Board.peripheral.swdioPin.$suggestSolution         = "PA19";
